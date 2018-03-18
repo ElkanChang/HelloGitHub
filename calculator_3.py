@@ -16,8 +16,7 @@ class Config():
                 config_item = line[0].strip()
                 config_value = line[1].strip()
                 try:
-                    float(config_value)
-                    self._config[config_item] = config_value
+                    self._config[config_item] = float(config_value)
                 except ValueError:
                     print('config file format error.')
                     sys.exit()
@@ -38,8 +37,7 @@ class UserData():
                 work_num = line[0].strip()
                 salary_before = line[1].strip()
                 try:
-                    int(salary_before)
-                    self.userdata[work_num] = salary_before
+                    self.userdata[work_num] = int(salary_before)
                 except ValueError:
                     print('User data file format error.')
                     sys.exit()
@@ -101,11 +99,11 @@ class UserData():
             tax_2f = format(tax,'.2f')
             final_salary_2f = format(final_salary,'.2f')
             final_salary_dict[work_num] = ("{0},{1},{2},{3},{4}".format(
-                                          work_num,before_salary,insurance_2f,
+                                          work_num,salary_before,insurance_2f,
                                           tax_2f,final_salary_2f))
         return final_salary_dict
 
-    def dump_to_flie(self,result_file,final_result):
+    def dump_to_file(self,result_file,final_result):
         '''write result in CSV format'''
 #        final_result = self.calculator()
         with open(result_file,"w") as r_file:
@@ -113,6 +111,7 @@ class UserData():
                 r_file.write( i + "\n")
 
 def main():
+    global config_info
     parser = argparse.ArgumentParser(description=__doc__,
             formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('-c','--config',help='config file',dest='cfg')
@@ -131,3 +130,4 @@ if __name__ == '__main__':
         sys.exit()
     else:
         main()
+
