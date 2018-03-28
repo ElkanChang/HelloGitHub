@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Article Detail</title>
+    <link rel="stylesheet" href="../statics/style.css" />
+</head>
+<body>
+    {% from "macro.html" import essay_format %}
+    <div class="container">
+        {{ essay_format(file_content) }}
+    </div>    
+</body>
+{% extends "base.html" %}
+</html>
